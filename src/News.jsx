@@ -30,10 +30,10 @@ const News = (props) => {
                 </CardContent>
                 <CardMedia
                   component="img"
-                  alt="Contemplative Reptile"
+                  alt={item.title}
                   height="140"
                   image={item.image}
-                  title="Contemplative Reptile"
+                  title={item.title}
                 />
                 <CardContent>
                   <Typography component="p">{item.excerpt}</Typography>
