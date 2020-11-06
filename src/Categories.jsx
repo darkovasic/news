@@ -1,14 +1,16 @@
-import React, {useState} from "react";
-import styled from 'styled-components';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import Typography from '@material-ui/core/Typography';
+import React, { useState } from "react";
+import styled from "styled-components";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Typography,
+  Container,
+} from "@material-ui/core";
 
-const Wrapper = styled.div`
-  margin-top: 20px;
-  padding: 30px;
+const Wrapper = styled(Container)`
+  margin-top: 50px;
 `;
 
 const Heading = styled(Typography)`
@@ -35,11 +37,13 @@ const Categories = (props) => {
   };  
 
   return (
-    <Wrapper>
-      {categories.map(accordion => {
+    <Wrapper maxWidth="md">
+      <h1>Top 5 news by categories from GB:</h1>
+      {categories.map((accordion, i) => {
         const {id, heading} = accordion;
         return (
           <Accordion
+            key={i}
             expanded={expanded === id}
             onChange={handleChange(id)}
           >
