@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { AppBar, Toolbar, Container, IconButton, List, ListItem, ListItemText, Hidden } from "@material-ui/core";
 import { Home } from "@material-ui/icons";
 import styled from 'styled-components';
@@ -28,12 +29,14 @@ const Header = () => {
             <SideDrawer navLinks={navLinks} />
           </Hidden>
           <IconButton color="inherit" aria-label="home">
+          <LinkStyled to="/">
             <Home fontSize="large" />
+          </LinkStyled>
           </IconButton>
           <Hidden smDown>
             <ListStyled component="nav" aria-labelledby="main navigation">
-              {navLinks.map(({ title, path }) => (
-                <LinkStyled href={path} key={title}>
+              {navLinks.map(({ title, path }, i) => (
+                <LinkStyled to={path} key={i}>
                   <ListItem button>
                     <ListItemText primary={title} />
                   </ListItem>
@@ -41,15 +44,15 @@ const Header = () => {
               ))}
             </ListStyled>
           </Hidden>
-          <ListStyled component="nav" aria-labelledby="main navigation">
+          <LanguageSelector component="nav" aria-labelledby="main navigation">
             {lang.map(({ title, path }) => (
-              <LinkStyled href={path} key={title}>
+              <LinkStyled to={path} key={title}>
                 <ListItem button>
                   <ListItemText primary={title} />
                 </ListItem>
               </LinkStyled>
             ))}
-          </ListStyled>
+          </LanguageSelector>
         </ContainerStyled>
       </Toolbar>
     </AppBar>
@@ -66,7 +69,13 @@ const ListStyled = styled(List)`
   justify-content: space-between;
 `;
 
-const LinkStyled = styled.div`
+const LanguageSelector = styled(List)`
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+`;
+
+const LinkStyled = styled(Link)`
   text-decoration: none;
   text-transform: uppercase;
   color: white;

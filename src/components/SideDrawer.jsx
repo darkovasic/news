@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const SideDrawer = ({ navLinks }) => {
 
-  const [state, setState] = useState({ right: false });
+  const [state, setState] = useState({ mobileMenu: false });
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -40,17 +40,17 @@ const SideDrawer = ({ navLinks }) => {
       <IconButton
         edge="start"
         aria-label="menu"
-        onClick={toggleDrawer("right", true)}
+        onClick={toggleDrawer("mobileMenu", true)}
       >
         <Menu fontSize="large" style={{ color: `white` }} />
       </IconButton>
       <Drawer
         anchor="left"
-        open={state.right}
-        // onOpen={toggleDrawer("right", true)}
-        onClose={toggleDrawer("right", false)}
+        open={state.mobileMenu}
+        // onOpen={toggleDrawer("mobileMenu", true)}
+        onClose={toggleDrawer("mobileMenu", false)}
       >
-        {sideDrawerList("right")}
+        {sideDrawerList("mobileMenu")}
       </Drawer>
     </React.Fragment>
   );

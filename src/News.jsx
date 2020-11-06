@@ -1,12 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
-import { Grid, Paper, Typography } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
+import { Grid, Typography, Card, CardActionArea, CardActions, CardContent, CardMedia, Button } from "@material-ui/core";
 import { posts } from "./dummy-post";
 
 const Wrapper = styled.div`
@@ -20,7 +14,7 @@ const News = (props) => {
     <Wrapper>
       <Grid container spacing={4} justify="center">
         {posts.map((item, i) => (
-          <Grid item key={i}>
+          <Grid item lg={4} key={i}>
             <Card>
               <CardActionArea>
                 <CardContent>
