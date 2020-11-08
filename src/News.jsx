@@ -11,7 +11,7 @@ import {
   CardMedia,
   Button,
 } from "@material-ui/core";
-import { posts } from "./dummy-post";
+import { news } from "./constants";
 
 const Wrapper = styled(Container)`
   margin-top: 50px;
@@ -22,7 +22,7 @@ const News = (props) => {
   return (
     <Wrapper maxWidth="lg">
       <Grid container spacing={4} justify="center">
-        {posts.map((item, i) => (
+        {news.map((item, i) => (
           <Grid item lg={4} key={i}>
             <Card>
               <CardActionArea>
