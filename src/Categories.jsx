@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
-  Grid,
-  Card,
-  CardContent,
-  CardMedia,
   Accordion,
   AccordionDetails,
   AccordionSummary,
@@ -13,7 +9,8 @@ import {
   Container
 } from "@material-ui/core";
 import Carousel from 'react-material-ui-carousel';
-import { news } from "./constants";
+import CarouselItem from './components/CarouselItem';
+import { news, categories } from "./constants";
 
 const Wrapper = styled(Container)`
   margin-top: 50px;
@@ -22,35 +19,11 @@ const Wrapper = styled(Container)`
 
 const Heading = styled(Typography)`
   font-size: theme.typography.pxToRem(15);
-  ${'' /* flex-basis: '33.33%'; */}
-  flex-shrink: 0;
-`;
-
-const GridStyled = styled(Grid)`
-  height: 350px;
 `;
 
 const CarouselStyled = styled(Carousel)`
   width: 100%;
 `;
-
-const CardMediaStyled = styled(CardMedia)`
-  height: 70%;
-`;
-
-const CardContentStyled = styled(CardContent)`
-  height: 30%;
-`;
-
-const categories = [
-  { name: `entertainment`, heading: `Entertainment` },
-  { name: `general`, heading: `General` },
-  { name: `health`, heading: `Health` },
-  { name: `science`, heading: `Science` },
-  { name: `sport`, heading: `Sport` },
-  { name: `technology`, heading: `Technology` },
-];
-
 
 const chunkArray = (myArray, chunk_size) => {
   let index = 0;
@@ -66,37 +39,10 @@ const chunkArray = (myArray, chunk_size) => {
   return tempArray;
 };
 
-
 const newsChunks = chunkArray(news, 3);
 
-const Item = (props) => {
 
-  const totalItems = props.item.length ? props.item.length : 3;
-
-  const items = props.item.map((card, i) => {
-    return (
-      <GridStyled item xs={12 / totalItems} key={i}>
-        <CardMediaStyled image={card.image} title={card.title} />
-        <CardContentStyled>
-          <Typography gutterBottom variant="h5" component="h2">
-            {card.title}
-          </Typography>
-        </CardContentStyled>
-      </GridStyled>
-    );
-  });
-    
-  return (
-    <Card raised>
-      <Grid container spacing={0}>
-        {items}
-      </Grid>
-    </Card>
-  );
-}
-
-
-const Categories = (props) => {
+const Categories = () => {
   
   const [expanded, setExpanded] = useState(false);
 
@@ -135,7 +81,7 @@ const Categories = (props) => {
                 onChange={(now, previous) => console.log(`OnChange User Callback: Now displaying child${now}. Previously displayed child${previous}`)}              
               >
                 {newsChunks.map((item, i) => (
-                  <Item key={i} item={item} />
+                  <CarouselItem key={i} item={item} />
                 ))}
               </CarouselStyled>
             </AccordionDetails>
