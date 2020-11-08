@@ -8,8 +8,8 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "CHANGE_COUNTRY":
-      return { selectedCountry: action.payload };
+    case "CHANGE_COUNTRY":    
+      return { selectedCountry: action.payload ? action.payload.toUpperCase() : 'GB' };
     default:
       return state;
   }

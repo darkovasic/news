@@ -1,8 +1,20 @@
-import React from 'react';
-import { Link } from "react-router-dom";
-import { AppBar, Toolbar, Container, IconButton, List, ListItem, ListItemText, Hidden } from "@material-ui/core";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import queryString from 'query-string';
+import changeCountryAction from "../actions/changeCountryAction";
+import {
+  AppBar,
+  Toolbar,
+  Container,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+  Hidden,
+} from "@material-ui/core";
 import { Home } from "@material-ui/icons";
-import styled from 'styled-components';
+import styled from "styled-components";
 import SideDrawer from "./SideDrawer";
 
 const navLinks = [
@@ -11,16 +23,24 @@ const navLinks = [
   { title: `Search`, path: `/search` },
 ];
 
-const lang = [
-  { title: `GB`, path: `#` },
-  { title: `US`, path: `#` }
+const countries = [
+  { title: `GB`, path: `gb` },
+  { title: `US`, path: `us` }
 ];
 
-console.log("reloading");
+console.log("reloading header");
 
+const Header = (props) => {
 
+  const dispatch = useDispatch();
+  let history = useHistory();
+  let queryParams = useLocation().search;
+  let {lang} = queryString.parse(queryParams);
 
-const Header = () => {
+  useEffect(() => {
+    dispatch(changeCountryAction(lang));
+  }, [dispatch, lang]);
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -44,15 +64,15 @@ const Header = () => {
               ))}
             </ListStyled>
           </Hidden>
-          <LanguageSelector component="nav" aria-labelledby="main navigation">
-            {lang.map(({ title, path }) => (
-              <LinkStyled to={path} key={title}>
+          <LanguageNav component="nav" aria-labelledby="main navigation">
+            {countries.map(({ title, path }) => (
+              <LanguageSwitcher key={title} onClick={() => history.push(`?lang=${path}`)}>
                 <ListItem button>
                   <ListItemText primary={title} />
                 </ListItem>
-              </LinkStyled>
+              </LanguageSwitcher>
             ))}
-          </LanguageSelector>
+          </LanguageNav>
         </ContainerStyled>
       </Toolbar>
     </AppBar>
@@ -69,13 +89,19 @@ const ListStyled = styled(List)`
   justify-content: space-between;
 `;
 
-const LanguageSelector = styled(List)`
+const LanguageNav= styled(List)`
   display: flex;
   flex: 1;
   justify-content: flex-end;
 `;
 
 const LinkStyled = styled(Link)`
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+`;
+
+const LanguageSwitcher = styled.div`
   text-decoration: none;
   text-transform: uppercase;
   color: white;

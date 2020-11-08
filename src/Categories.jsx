@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
@@ -44,8 +44,6 @@ const newsChunks = chunkArray(news, 3);
 
 
 const Categories = (props) => {
-console.log('categories props', props);
-  const dispatch = useDispatch();
 
   const selectedCountry = useSelector(state => state.selectedCountry);
   const [expanded, setExpanded] = useState(false);
