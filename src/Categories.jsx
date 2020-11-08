@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
@@ -42,8 +43,11 @@ const chunkArray = (myArray, chunk_size) => {
 const newsChunks = chunkArray(news, 3);
 
 
-const Categories = () => {
-  
+const Categories = (props) => {
+console.log('categories props', props);
+  const dispatch = useDispatch();
+
+  const selectedCountry = useSelector(state => state.selectedCountry);
   const [expanded, setExpanded] = useState(false);
 
   const handleChangeAccordion = (panel) => (event, isExpanded) => {
@@ -52,7 +56,7 @@ const Categories = () => {
 
   return (
     <Wrapper maxWidth="lg">
-      <h1>Top 5 news by categories from GB:</h1>
+      <h1>{`Top 5 news by categories from ${selectedCountry}:`}</h1>
       {categories.map((accordion, i) => {
         const {name, heading} = accordion;
         return (
@@ -75,7 +79,7 @@ const Categories = () => {
                 animation="fade"
                 indicators={true}
                 timeout={500}
-                navButtonsAlwaysVisible={false}
+                navButtonsAlwaysVisible={true}
                 next={(now, previous) => console.log(`Next User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
                 prev={(now, previous) => console.log(`Prev User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
                 onChange={(now, previous) => console.log(`OnChange User Callback: Now displaying child${now}. Previously displayed child${previous}`)}              

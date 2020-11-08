@@ -11,8 +11,8 @@ const Wrapper = styled(Container)`
 const Search = (props) => {
    
   return (
-    <Wrapper maxWidth="md">
-      <h2>Search</h2>
+    <Wrapper maxWidth="lg">
+      <h1>Search</h1>
     </Wrapper>
   );
 }
