@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import {
   Container,
@@ -11,13 +12,22 @@ import {
   CardMedia,
   Button,
 } from "@material-ui/core";
-import { news } from "./constants";
+import getTopNews from "./actions/getTopNews";
+// import { news } from "./constants";
 
 const Wrapper = styled(Container)`
   margin-top: 50px;
 `;
 
-const News = (props) => {
+const News = () => {
+
+  const dispatch = useDispatch();
+  const news = useSelector(state => state.news);
+  const country = useSelector(state => state.country);
+
+  useEffect(() => {
+    dispatch(getTopNews());
+  }, [dispatch, country]);
    
   return (
     <Wrapper maxWidth="lg">
@@ -35,11 +45,11 @@ const News = (props) => {
                   component="img"
                   alt={item.title}
                   height="140"
-                  image={item.image}
+                  image={item.urlToImage}
                   title={item.title}
                 />
                 <CardContent>
-                  <Typography component="p">{item.excerpt}</Typography>
+                  <Typography component="p">{item.description}</Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>

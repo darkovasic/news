@@ -16,16 +16,12 @@ import {
 import { Home } from "@material-ui/icons";
 import styled from "styled-components";
 import SideDrawer from "./SideDrawer";
+import { countries } from "../constants";
 
 const navLinks = [
   { title: `Top News`, path: `/top-news` },
   { title: `Categories`, path: `/categories` },
   { title: `Search`, path: `/search` },
-];
-
-const countries = [
-  { title: `GB`, path: `gb` },
-  { title: `US`, path: `us` }
 ];
 
 console.log("reloading header");
@@ -35,11 +31,11 @@ const Header = (props) => {
   const dispatch = useDispatch();
   let history = useHistory();
   let queryParams = useLocation().search;
-  let {lang} = queryString.parse(queryParams);
+  let {country} = queryString.parse(queryParams);
 
   useEffect(() => {
-    dispatch(changeCountryAction(lang));
-  }, [dispatch, lang]);
+    dispatch(changeCountryAction(country));
+  }, [dispatch, country]);
 
   return (
     <AppBar position="static">
@@ -66,7 +62,7 @@ const Header = (props) => {
           </Hidden>
           <LanguageNav component="nav" aria-labelledby="main navigation">
             {countries.map(({ title, path }) => (
-              <LanguageSwitcher key={title} onClick={() => history.push(`?lang=${path}`)}>
+              <LanguageSwitcher key={title} onClick={() => history.push(`?country=${path}`)}>
                 <ListItem button>
                   <ListItemText primary={title} />
                 </ListItem>

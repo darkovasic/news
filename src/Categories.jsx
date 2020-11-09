@@ -45,7 +45,7 @@ const newsChunks = chunkArray(news, 3);
 
 const Categories = (props) => {
 
-  const selectedCountry = useSelector(state => state.selectedCountry);
+  const country = useSelector(state => state.country);
   const [expanded, setExpanded] = useState(false);
 
   const handleChangeAccordion = (panel) => (event, isExpanded) => {
@@ -54,7 +54,7 @@ const Categories = (props) => {
 
   return (
     <Wrapper maxWidth="lg">
-      <h1>{`Top 5 news by categories from ${selectedCountry}:`}</h1>
+      <h1>{`Top 5 news by categories from ${country}:`}</h1>
       {categories.map((accordion, i) => {
         const {name, heading} = accordion;
         return (
@@ -78,9 +78,9 @@ const Categories = (props) => {
                 indicators={true}
                 timeout={500}
                 navButtonsAlwaysVisible={true}
-                next={(now, previous) => console.log(`Next User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
-                prev={(now, previous) => console.log(`Prev User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
-                onChange={(now, previous) => console.log(`OnChange User Callback: Now displaying child${now}. Previously displayed child${previous}`)}              
+                next={(now, previous) => console.log(`Next Slide Callback: Now displaying child${now}. Previously displayed child${previous}`)}
+                prev={(now, previous) => console.log(`Prev Slide Callback: Now displaying child${now}. Previously displayed child${previous}`)}
+                onChange={(now, previous) => console.log(`OnChange Slide Callback: Now displaying child${now}. Previously displayed child${previous}`)}              
               >
                 {newsChunks.map((item, i) => (
                   <CarouselItem key={i} item={item} />
