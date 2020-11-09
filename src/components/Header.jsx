@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 import queryString from 'query-string';
 import changeCountryAction from "../actions/changeCountryAction";
 import {
@@ -52,7 +52,7 @@ const Header = (props) => {
           <Hidden smDown>
             <ListStyled component="nav" aria-labelledby="main navigation">
               {navLinks.map(({ title, path }, i) => (
-                <LinkStyled to={path} key={i}>
+                <LinkStyled to={path} activeStyle={{ color: '#8A98E4' }} key={i}>
                   <ListItem button>
                     <ListItemText primary={title} />
                   </ListItem>
@@ -91,7 +91,7 @@ const LanguageNav= styled(List)`
   justify-content: flex-end;
 `;
 
-const LinkStyled = styled(Link)`
+const LinkStyled = styled(NavLink)`
   text-decoration: none;
   text-transform: uppercase;
   color: white;

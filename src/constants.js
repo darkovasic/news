@@ -42,6 +42,7 @@ export const news = [
 ];
 
 export const categories = [
+  { name: `business`, heading: `Business` },
   { name: `entertainment`, heading: `Entertainment` },
   { name: `general`, heading: `General` },
   { name: `health`, heading: `Health` },
