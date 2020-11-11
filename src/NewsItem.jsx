@@ -24,8 +24,6 @@ const NewsItem = (props) => {
 
   const {item} = props.location.state;
 
-  console.log(item)
-
   return (
     <Wrapper maxWidth="md">
       <main>

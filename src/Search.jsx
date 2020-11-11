@@ -44,9 +44,9 @@ const Search = () => {
   const country = useSelector(state => state.country);
   const [query, setQuery] = useState('');
 
-  useEffect(() => {
-    dispatch(getTopNews());
-  }, [dispatch, country]);
+  // useEffect(() => {
+  //   dispatch(getTopNews());
+  // }, [dispatch, country]);
 
 
   const submitForm = useCallback(

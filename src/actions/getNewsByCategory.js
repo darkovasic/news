@@ -1,6 +1,6 @@
-const getNewsByCategory = (category) => ({
+const getNewsByCategory = (categories) => ({
   type: 'GET_NEWS_BY_CATEGORY',
-  category
+  categories
 });
 
 export default getNewsByCategory;

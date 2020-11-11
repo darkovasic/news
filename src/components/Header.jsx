@@ -24,8 +24,6 @@ const navLinks = [
   { title: `Search`, path: `/search` },
 ];
 
-console.log("reloading header");
-
 const Header = (props) => {
 
   const dispatch = useDispatch();

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
@@ -11,7 +11,8 @@ import {
 } from "@material-ui/core";
 import Carousel from 'react-material-ui-carousel';
 import CarouselItem from './components/CarouselItem';
-import { news, categories } from "./constants";
+import { categories } from "./constants";
+import getNewsByCategory from "./actions/getNewsByCategory";
 
 const Wrapper = styled(Container)`
   margin-top: 50px;
@@ -40,22 +41,30 @@ const chunkArray = (myArray, chunk_size) => {
   return tempArray;
 };
 
-const newsChunks = chunkArray(news, 3);
-
-
 const Categories = (props) => {
 
+  const dispatch = useDispatch();
   const country = useSelector(state => state.country);
+  const newsRaw = useSelector(state => state.news);
   const [expanded, setExpanded] = useState(false);
 
+  const news = newsRaw.map((item, i) => {
+    return {...categories[i], ...item}; 
+  });
+  
   const handleChangeAccordion = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
-  };  
+  };
+
+  useEffect(() => {
+    dispatch(getNewsByCategory(categories));
+  }, [dispatch, country]);
 
   return (
     <Wrapper maxWidth="lg">
       <h1>{`Top 5 news by categories from ${country}:`}</h1>
-      {categories.map((accordion, i) => {
+      {news.map((accordion, i) => {       
+        const newsChunks = accordion.articles ? chunkArray(accordion.articles, 3) : [];
         const {name, heading} = accordion;
         return (
           <Accordion

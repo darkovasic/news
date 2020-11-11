@@ -25,44 +25,31 @@ function* fetchNewsByQuery(query) {
 function* fetchNewsByQueryFlow() {
   while (true) {
     const payload  = yield take(["GET_NEWS_BY_QUERY"]);   
-    yield call(fetchNewsByQuery, payload.query)
+    yield call(fetchNewsByQuery, payload.query);
   }
 }
 
 
 function* fetchNewsByCategory(categories) {
-console.log("categories", categories)  
+
   let country = yield select(getCountry);
 
-  // categories.map(category => {
-  //   const json = yield fetch(
-  //     `${apiBaseUrl}?country=${country}&category=${category}&apiKey=${apiKey}`
-  //   ).then((response) => response.json());
-  //   yield put({ type: "GET_NEWS_BY_CATEGORY_SUCCESS", json: json.articles });
-  // })
-console.log("country", country); 
-  const json  = yield categories.map(category => call(fetch, 
-    `${apiBaseUrl}?country=${country}&category=${category}&apiKey=${apiKey}`
-    )).then((response) => response.json());
-console.log("json", json);  
+  const json = yield all(categories.map(category => {
+    return fetch(
+      `${apiBaseUrl}?country=${country}&category=${category.name}&apiKey=${apiKey}`
+    ).then((response) => response.json());
+  }));
   yield put({ type: "GET_NEWS_BY_CATEGORY_SUCCESS", json: json });
-
-  // yield all(categories.map(category => {
-  //   return fetch(
-  //     `${apiBaseUrl}?country=${country}&category=${category}&apiKey=${apiKey}`
-  //   ).then((response) => response.json());
-  //   yield put({ type: "GET_NEWS_BY_CATEGORY_SUCCESS", json: json.articles });
-  // }));
 
 }
 
 function* fetchNewsByCategoryFlow() {
   while (true) {
-    const payload  = yield take(["GET_NEWS_BY_CATEGORY"]);
-console.log("payload.categories", payload);    
-    yield call(fetchNewsByCategory, payload.categories)
+    const payload  = yield take(["GET_NEWS_BY_CATEGORY"]);   
+    yield call(fetchNewsByCategory, payload.categories);
   }
 }
+
 
 function* actionWatcher() {
   yield takeLatest("GET_NEWS", fetchNews);

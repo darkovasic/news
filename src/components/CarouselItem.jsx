@@ -9,15 +9,15 @@ import {
 } from "@material-ui/core";
 
 const GridStyled = styled(Grid)`
-  height: 350px;
+  height: 400px;
 `;
 
 const CardMediaStyled = styled(CardMedia)`
-  height: 70%;
+  height: 60%;
 `;
 
 const CardContentStyled = styled(CardContent)`
-  height: 30%;
+  height: 40%;
 `;
 
 const CarouselItem = (props) => {
@@ -27,7 +27,7 @@ const CarouselItem = (props) => {
   const items = props.item.map((card, i) => {
     return (
       <GridStyled item xs={12 / totalItems} key={i}>
-        <CardMediaStyled image={card.image} title={card.title} />
+        <CardMediaStyled image={card.urlToImage} title={card.title} />
         <CardContentStyled>
           <Typography gutterBottom variant="h5" component="h2">
             {card.title}
