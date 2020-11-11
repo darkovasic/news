@@ -48,10 +48,10 @@ const Categories = (props) => {
   const newsRaw = useSelector(state => state.news);
   const [expanded, setExpanded] = useState(false);
 
-  const news = newsRaw.map((item, i) => {
+  const news = newsRaw && newsRaw.map((item, i) => {
     return {...categories[i], ...item}; 
   });
-  
+
   const handleChangeAccordion = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
@@ -62,8 +62,8 @@ const Categories = (props) => {
 
   return (
     <Wrapper maxWidth="lg">
-      <h1>{`Top 5 news by categories from ${country}:`}</h1>
-      {news.map((accordion, i) => {       
+      <h1>{`Top news by categories from ${country}:`}</h1>
+      {news && news.map((accordion, i) => {       
         const newsChunks = accordion.articles ? chunkArray(accordion.articles, 3) : [];
         const {name, heading} = accordion;
         return (

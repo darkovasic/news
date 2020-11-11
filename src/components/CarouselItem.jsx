@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import {
   Grid,
@@ -20,6 +21,13 @@ const CardContentStyled = styled(CardContent)`
   height: 40%;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  &:focus, &:hover, &:visited, &:link, &:active {
+    text-decoration: none;
+  }
+`;
+
 const CarouselItem = (props) => {
 
   const totalItems = props.item.length ? props.item.length : 3;
@@ -27,12 +35,21 @@ const CarouselItem = (props) => {
   const items = props.item.map((card, i) => {
     return (
       <GridStyled item xs={12 / totalItems} key={i}>
-        <CardMediaStyled image={card.urlToImage} title={card.title} />
-        <CardContentStyled>
-          <Typography gutterBottom variant="h5" component="h2">
-            {card.title}
-          </Typography>
-        </CardContentStyled>
+        <StyledLink
+          to={{
+            pathname: `/news/${card.url.substring(
+              card.url.lastIndexOf("/") + 1
+            )}`,
+            state: { item: card },
+          }}
+        >
+          <CardMediaStyled image={card.urlToImage} title={card.title} />
+          <CardContentStyled>
+            <Typography gutterBottom variant="h5" component="h2">
+              {card.title}
+            </Typography>
+          </CardContentStyled>
+        </StyledLink>
       </GridStyled>
     );
   });

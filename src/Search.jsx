@@ -83,12 +83,12 @@ const Search = () => {
           </Form>
         </Grid>
         <Grid container spacing={4} justify="center">
-          {news.map((item, i) => (
+          {news && news.map((item, i) => (
             <Grid item lg={4} md={6} xs={12} key={i}>
               <Card>
                 <StyledLink
                   to={{
-                    pathname: `/news/${item.url.substring(
+                    pathname: `/news/${item && item.url && item.url.substring(
                       item.url.lastIndexOf("/") + 1
                     )}`,
                     state: {item: item},
