@@ -14,7 +14,15 @@ const rootReducer = (state = initialState, action) => {
     case "GET_NEWS":
       return { ...state, loading: true };
     case 'GET_NEWS_SUCCESS':
-      return { ...state, news: action.json, loading: false }      
+      return { ...state, news: action.json, loading: false }
+    case "GET_NEWS_BY_CATEGORY":
+      return { ...state, loading: true };      
+    case 'GET_NEWS_BY_CATEGORY_SUCCESS':
+      return { ...state, news: action.json, loading: false } 
+    case "GET_NEWS_BY_QUERY":
+      return { ...state, loading: true };      
+    case 'GET_NEWS_BY_QUERY_SUCCESS':     
+      return { ...state, news: action.json, loading: false }               
     default:
       return state;
   }

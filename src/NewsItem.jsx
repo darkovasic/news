@@ -24,6 +24,8 @@ const NewsItem = (props) => {
 
   const {item} = props.location.state;
 
+  console.log(item)
+
   return (
     <Wrapper maxWidth="md">
       <main>
@@ -43,11 +45,11 @@ const NewsItem = (props) => {
                 title={item.title}
               />
               <CardContent>
-                <Typography component="p">{item.description}</Typography>
+                <Typography component="p">{item.content}</Typography>
               </CardContent>
               <CardActions>
-                <Button size="small" color="primary">
-                  Read More
+                <Button size="small" color="primary" onClick={props.history.goBack}>
+                  {'< Back to News'}
                 </Button>
               </CardActions>
             </Card>

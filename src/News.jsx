@@ -14,7 +14,6 @@ import {
   Button,
 } from "@material-ui/core";
 import getTopNews from "./actions/getTopNews";
-// import { news } from "./constants";
 
 const Wrapper = styled(Container)`
   margin-top: 50px;
@@ -23,8 +22,13 @@ const Wrapper = styled(Container)`
 const StyledLink = styled(Link)`
   text-decoration: none;
   &:focus, &:hover, &:visited, &:link, &:active {
-      text-decoration: none;
+    text-decoration: none;
   }
+`;
+
+const StyledCardActions = styled(CardActions)`
+  display: flex;
+  align-items: right;
 `;
 
 const News = () => {
@@ -68,12 +72,12 @@ const News = () => {
                     <Typography component="p">{item.description}</Typography>
                   </CardContent>
                 </CardActionArea>
+                <StyledCardActions>
+                  <Button size="small" color="primary">
+                    Read More
+                  </Button>
+                </StyledCardActions>
               </StyledLink>
-              <CardActions>
-                <Button size="small" color="primary">
-                  Read More
-                </Button>
-              </CardActions>
             </Card>
           </Grid>
         ))}
