@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -14,7 +14,6 @@ import {
   TextField,
   Button,
 } from "@material-ui/core";
-import getTopNews from "./actions/getTopNews";
 import getNewsByQuery from "./actions/getNewsByQuery";
 
 const Wrapper = styled(Container)`
