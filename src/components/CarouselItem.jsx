@@ -19,6 +19,7 @@ const StyledCardMedia = styled(CardMedia)`
 
 const StyledCardContent = styled(CardContent)`
   height: 40%;
+  color: black;
 `;
 
 const StyledLink = styled(Link)`

@@ -12,7 +12,7 @@ const rootReducer = (state = initialState, action) => {
         country: action.payload ? action.payload.toUpperCase() : 'GB',
       };
     case "GET_NEWS":
-      return { ...state, loading: true };
+      return { ...state, news: [], loading: true };
     case 'GET_NEWS_SUCCESS':
       return { ...state, news: action.json, loading: false }
     case "GET_NEWS_BY_CATEGORY":
