@@ -16,13 +16,7 @@ import {
 import { Home } from "@material-ui/icons";
 import styled from "styled-components";
 import SideDrawer from "./SideDrawer";
-import { countries } from "../constants";
-
-const navLinks = [
-  { title: `Top News`, path: `/top-news` },
-  { title: `Categories`, path: `/categories` },
-  { title: `Search`, path: `/search` },
-];
+import { countries, navLinks } from "../constants";
 
 const Header = (props) => {
 

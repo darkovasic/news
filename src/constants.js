@@ -11,3 +11,9 @@ export const countries = [
   { title: `GB`, path: `gb` },
   { title: `US`, path: `us` },
 ];
+
+export const navLinks = [
+  { title: `Top News`, path: `/top-news` },
+  { title: `Categories`, path: `/categories` },
+  { title: `Search`, path: `/search` },
+];
