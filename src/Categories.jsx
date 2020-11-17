@@ -29,11 +29,12 @@ const CarouselStyled = styled(Carousel)`
 
 const chunkArray = (myArray, chunk_size) => {
   let index = 0;
-  const arrayLength = myArray.length;
+  const arrayLength = 5;
+  const arr = myArray.slice(0, arrayLength);
   const tempArray = [];
 
   for (index = 0; index < arrayLength; index += chunk_size) {
-    let myChunk = myArray.slice(index, index + chunk_size);
+    let myChunk = arr.slice(index, index + chunk_size);
 
     tempArray.push(myChunk);
   }
@@ -62,7 +63,7 @@ const Categories = (props) => {
 
   return (
     <Wrapper maxWidth="lg">
-      <h1>{`Top news by categories from ${country}:`}</h1>
+      <h1>{`Top 5 news by categories from ${country}:`}</h1>
       {news && news.map((accordion, i) => {       
         const newsChunks = accordion.articles ? chunkArray(accordion.articles, 3) : [];
         const {name, heading} = accordion;
