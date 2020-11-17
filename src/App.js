@@ -2,7 +2,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import './App.css';
 import Categories from "./Categories";
 import News from "./News";
-import NewsItem from "./NewsItem";
+import NewsDetails from "./NewsDetails";
 import Search from "./Search";
 
 const App = () => {
@@ -13,7 +13,7 @@ const App = () => {
         {/* <Route path="/sample" render={routerProps => <Sample {...routerProps} sampleProp={"sample"}/>} /> */}
         <Route path="/categories" component={Categories} />
         <Route path="/search" component={Search} />
-        <Route path="/news/:slug" component={NewsItem} />
+        <Route path="/news/:slug" component={NewsDetails} />
         <Route path='/' render={() => <Redirect to="/top-news" />} />
         {/* <Route component={NoMatch} /> */}
       </Switch>

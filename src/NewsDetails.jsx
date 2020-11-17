@@ -11,16 +11,13 @@ import {
   Button,
 } from "@material-ui/core";
 import styled from "styled-components";
+import parse from 'html-react-parser';
 
 const Wrapper = styled(Container)`
   margin-top: 50px;
 `;
 
-const GridStyled = styled(Grid)`
-  margin-top: theme.spacing(3);
-`;
-
-const NewsItem = (props) => {
+const NewsDetails = (props) => {
 
   const {item} = props.location.state;
 
@@ -38,12 +35,12 @@ const NewsItem = (props) => {
               <CardMedia
                 component="img"
                 alt={item.title}
-                height="360"
+                height="560"
                 image={item.urlToImage}
                 title={item.title}
               />
               <CardContent>
-                <Typography component="p">{item.content}</Typography>
+                <Typography>{parse(`${item.content}`)}</Typography>
               </CardContent>
               <CardActions>
                 <Button size="small" color="primary" onClick={props.history.goBack}>
@@ -53,10 +50,9 @@ const NewsItem = (props) => {
             </Card>
           </Grid>
         </Grid>
-        <GridStyled container spacing={5}></GridStyled>
       </main>
     </Wrapper>
   );
 }
 
-export default NewsItem;
+export default NewsDetails;

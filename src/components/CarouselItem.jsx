@@ -9,15 +9,15 @@ import {
   Typography
 } from "@material-ui/core";
 
-const GridStyled = styled(Grid)`
+const StyledGrid = styled(Grid)`
   height: 400px;
 `;
 
-const CardMediaStyled = styled(CardMedia)`
+const StyledCardMedia = styled(CardMedia)`
   height: 60%;
 `;
 
-const CardContentStyled = styled(CardContent)`
+const StyledCardContent = styled(CardContent)`
   height: 40%;
 `;
 
@@ -34,7 +34,7 @@ const CarouselItem = (props) => {
 
   const items = props.item.map((card, i) => {
     return (
-      <GridStyled item xs={12 / totalItems} key={i}>
+      <StyledGrid item xs={12 / totalItems} key={i}>
         <StyledLink
           to={{
             pathname: `/news/${card.url.substring(
@@ -43,14 +43,14 @@ const CarouselItem = (props) => {
             state: { item: card },
           }}
         >
-          <CardMediaStyled image={card.urlToImage} title={card.title} />
-          <CardContentStyled>
+          <StyledCardMedia image={card.urlToImage} title={card.title} />
+          <StyledCardContent>
             <Typography gutterBottom variant="h5" component="h2">
               {card.title}
             </Typography>
-          </CardContentStyled>
+          </StyledCardContent>
         </StyledLink>
-      </GridStyled>
+      </StyledGrid>
     );
   });
     
