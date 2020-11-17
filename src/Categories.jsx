@@ -82,7 +82,7 @@ const Categories = (props) => {
             </AccordionSummary>
             <AccordionDetails>
               <CarouselStyled
-                autoPlay={false}
+                autoPlay={true}
                 // timer={this.state.timer}
                 animation="fade"
                 indicators={true}
