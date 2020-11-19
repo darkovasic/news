@@ -31,6 +31,7 @@ const StyledCardTitle = styled(CardContent)`
 
 const StyledCardContent = styled(CardContent)`
   color: black;
+  height: 168px;
 `;
 
 const StyledCardMedia = styled(CardMedia)`

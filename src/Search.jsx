@@ -7,11 +7,19 @@ import {
   TextField,
   Button,
 } from "@material-ui/core";
+import Loader from "react-loader-spinner";
 import NewsItem from "./components/NewsItem";
 import getNewsByQuery from "./actions/getNewsByQuery";
 
 const Wrapper = styled(Container)`
   margin-top: 50px;
+`;
+
+const StyledLoader = styled(Loader)`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const Form = styled.form`
@@ -23,6 +31,7 @@ const Search = () => {
   const dispatch = useDispatch();
   const news = useSelector(state => state.news);
   const country = useSelector(state => state.country);
+  const loading = useSelector(state => state.loading);
   const [query, setQuery] = useState('');
 
   const submitForm = useCallback(
@@ -58,6 +67,12 @@ const Search = () => {
             </Button>
           </Form>
         </Grid>
+        {loading && <StyledLoader
+          type="Oval"
+          color="#3f51b5"
+          height={80}
+          width={80}
+        />}
         <Grid container spacing={4} justify="center">
           {news && news.map((item, i) => (
             <NewsItem item={item} key={i} />

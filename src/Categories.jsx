@@ -11,12 +11,20 @@ import {
 } from "@material-ui/core";
 import Carousel from 'react-material-ui-carousel';
 import CarouselItem from './components/CarouselItem';
+import Loader from "react-loader-spinner";
 import { categories } from "./constants";
 import getNewsByCategory from "./actions/getNewsByCategory";
 
 const Wrapper = styled(Container)`
   margin-top: 50px;
   color: "#494949";
+`;
+
+const StyledLoader = styled(Loader)`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const Heading = styled(Typography)`
@@ -47,6 +55,7 @@ const Categories = (props) => {
   const dispatch = useDispatch();
   const country = useSelector(state => state.country);
   const newsRaw = useSelector(state => state.news);
+  const loading = useSelector(state => state.loading);
   const [expanded, setExpanded] = useState(false);
 
   const news = newsRaw && newsRaw.map((item, i) => {
@@ -64,6 +73,12 @@ const Categories = (props) => {
   return (
     <Wrapper maxWidth="lg">
       <h1>{`Top 5 news by categories from ${country}:`}</h1>
+      {loading && <StyledLoader
+        type="Oval"
+        color="#3f51b5"
+        height={80}
+        width={80}
+      />}
       {news && news.map((accordion, i) => {       
         const newsChunks = accordion.articles ? chunkArray(accordion.articles, 3) : [];
         const {name, heading} = accordion;
