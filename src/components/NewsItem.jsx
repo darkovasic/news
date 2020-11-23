@@ -64,7 +64,7 @@ const NewsItem = ({item}) => {
             <StyledCardMedia
               component="img"
               alt={item.title}
-              image={item.urlToImage}
+              image={item.urlToImage || "placeholder-image.png"}
               title={item.title}
             />
           </StyledCardActionArea>

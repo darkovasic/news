@@ -44,7 +44,7 @@ const CarouselItem = (props) => {
             state: { item: card },
           }}
         >
-          <StyledCardMedia image={card.urlToImage} title={card.title} />
+          <StyledCardMedia image={card.urlToImage || "placeholder-image.png"} title={card.title} />
           <StyledCardContent>
             <Typography gutterBottom variant="h5" component="h2">
               {card.title}
